@@ -1,17 +1,16 @@
 package com.developerhaoz.androidtrainingdemo;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-
-import com.bumptech.glide.Glide;
+import android.widget.VideoView;
 
 import java.io.File;
 
@@ -19,18 +18,25 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int REQUEST_CODE_TAKE_PHOTO = 0;
     private String mCurrentPhotoPath;
+    private VideoView mVvShowPhoto;
     private ImageView mIvShowPhoto;
     private static final String TAG = "MainActivity";
+    private static final int TAKE_PHOTO_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mVvShowPhoto = (VideoView) findViewById(R.id.main_vv_show_photo);
         mIvShowPhoto = (ImageView) findViewById(R.id.main_iv_show_photo);
+
         findViewById(R.id.main_btn_start_activity).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getPhotoWithCamera();
+                Intent takeVideoIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                if (takeVideoIntent.resolveActivity(getPackageManager()) != null) {
+                    startActivityForResult(takeVideoIntent, REQUEST_CODE_TAKE_PHOTO);
+                }
             }
         });
 
@@ -51,9 +57,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK && requestCode == REQUEST_CODE_TAKE_PHOTO){
-            Log.d(TAG, "onActivityResult: " + mCurrentPhotoPath);
-            Glide.with(this).load(mCurrentPhotoPath).into(mIvShowPhoto);
+        if (resultCode == RESULT_OK && requestCode == REQUEST_CODE_TAKE_PHOTO) {
+            Bundle bundle = data.getExtras();
+            Bitmap bitmap = (Bitmap) bundle.get("data");
+            mIvShowPhoto.setImageBitmap(bitmap);
         }
     }
 }
