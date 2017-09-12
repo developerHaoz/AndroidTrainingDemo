@@ -1,5 +1,6 @@
 package com.developerhaoz.androidtrainingdemo;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -8,6 +9,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.VideoView;
@@ -29,6 +31,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mVvShowPhoto = (VideoView) findViewById(R.id.main_vv_show_photo);
         mIvShowPhoto = (ImageView) findViewById(R.id.main_iv_show_photo);
+
+        LayoutInflater layoutInflater = LayoutInflater.from(this);
+
+        LayoutInflater layoutInflater1 = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         findViewById(R.id.main_btn_start_activity).setOnClickListener(new View.OnClickListener() {
             @Override
