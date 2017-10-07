@@ -3,12 +3,15 @@ package com.developerhaoz.androidtrainingdemo;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -31,6 +34,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mVvShowPhoto = (VideoView) findViewById(R.id.main_vv_show_photo);
         mIvShowPhoto = (ImageView) findViewById(R.id.main_iv_show_photo);
+
+        Log.d(TAG, "onCreate: " + "hello world");
+
+        ConnectivityManager connectivityManager = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        boolean isWifiConn = networkInfo.isConnected();
+        Log.d(TAG, "onCreate: isWifiConn: " + isWifiConn);
 
         LayoutInflater layoutInflater = LayoutInflater.from(this);
 
