@@ -2,6 +2,7 @@ package com.developerhaoz.androidtrainingdemo;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -34,6 +35,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mVvShowPhoto = (VideoView) findViewById(R.id.main_vv_show_photo);
         mIvShowPhoto = (ImageView) findViewById(R.id.main_iv_show_photo);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("test", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("key", "value");
+        editor.apply();
 
         Log.d(TAG, "onCreate: " + "hello world");
 
