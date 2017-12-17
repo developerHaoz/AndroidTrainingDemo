@@ -26,7 +26,5 @@ public class TestViewActivity extends AppCompatActivity {
         Set<Integer> set = new HashSet<>();
         int[] a = new int[12];
         a[1] = 9;
-
-
     }
 }
