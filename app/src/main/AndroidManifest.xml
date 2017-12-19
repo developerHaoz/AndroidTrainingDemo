@@ -46,6 +46,14 @@
             android:enabled="true"
             android:exported="true">
         </service>
+        <service
+            android:name=".download.DownloadService"
+            android:enabled="true"
+            android:exported="true">
+        </service>
+
+        <activity android:name=".download.DownloadActivity">
+        </activity>
     </application>
 
 </manifest>
