@@ -72,6 +72,7 @@ public class DownloadActivity extends AppCompatActivity implements View.OnClickL
                 mDownloadBinder.startDownload(url);
                 break;
             case R.id.download_pause_download:
+                System.exit(0);
                 mDownloadBinder.pauseDownload();
                 break;
             case R.id.download_cancel_download:

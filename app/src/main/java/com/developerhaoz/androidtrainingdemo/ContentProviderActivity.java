@@ -24,7 +24,7 @@ public class ContentProviderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_content_provider);
         final RxPermissions rxPermissions = new RxPermissions(this);
-        mBtnTest = (Button) findViewById(R.id.content_btn_test);
+//        mBtnTest = (Button) findViewById(R.id.content_btn_test);
         mBtnTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
